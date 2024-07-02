@@ -65,6 +65,13 @@ app.MapGet("api/{code}", async (string code, ApplicationDbContext context) =>
     return Results.Redirect(shortenedUrl.LongUrl);
 });
 
+app.MapGet("api", async (ApplicationDbContext context) =>
+{
+    var results = await context.ShortenedUrls.ToListAsync();
+
+    return Results.Ok(results);
+});
+
 app.UseHttpsRedirection();
 
 app.Run();

@@ -24,7 +24,7 @@ public class UrlShorteningService
             var codeChars = new char[NumbersOfCharsInShortLink];
             for (int i = 0; i < NumbersOfCharsInShortLink; i++)
             {
-                int randIndex = _random.Next(NumbersOfCharsInShortLink - 1);
+                int randIndex = _random.Next(Alphabet.Length - 1);
                 codeChars[i] = Alphabet[randIndex];
             }
             var code = new string(codeChars);
