@@ -1,0 +1,31 @@
+﻿networks:
+  url-shortener-network:
+
+services:
+  url-shortener:
+    image: url-shortener
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    networks:
+      - url-shortener-network
+  
+  urlshortener.db:
+    image: postgres:16
+    container_name: urlshortener.db
+    environment:
+      POSTGRES_USER: "urlshortener"
+      POSTGRES_PASSWORD: "urlshortener"
+      POSTGRES_DB: "urlshortener_db"
+    volumes:
+      - ./.containers/urlshortener-db:/var/lib/postgresql/data
+    networks:
+      - url-shortener-network
