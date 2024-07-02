@@ -14,6 +14,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapPost("api/short-url", async (string url) =>
+{
+    if (!Uri.TryCreate(url, UriKind.Absolute, out _))
+    {
+        return Results.BadRequest();
+    }
+
+    return Results.Ok();
+});
+
+
 app.UseHttpsRedirection();
 
 app.Run();
