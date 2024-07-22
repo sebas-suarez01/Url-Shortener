@@ -8,3 +8,12 @@ The shortened URL can be used to redirect to the original URL.
 - Redirect to the original URL using the shortened URL
 - View the list of shortened URLs
 - Cache the shortened URLs
+
+## Architecture
+![img.png](./images/img.png)
+
+## Technologies
+- Entity Framework Core
+- PostgreSQL
+- Docker
+- MemoryCache
